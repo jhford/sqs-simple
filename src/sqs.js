@@ -527,11 +527,9 @@ class QueueListener extends EventEmitter {
         this.emit('error', new Error('SQS Api returned non-list'), 'api');
         return;
       }
-      this.debug('received %d messages', msgs.length);
       msgs = msg.Messages;
-    } else {
-      this.debug('received 0 messages');
     }
+    this.debug('received %d messages', msgs.length);
 
     // We never want this to actually throw.  The __handleMsg function should
     // take care of emitting the error event
